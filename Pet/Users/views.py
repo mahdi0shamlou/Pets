@@ -42,7 +42,7 @@ class Update_profile(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     def post(self, request):
- 
+
         email = request.user.email
         data_of_users = UserData.objects.get(email=email)
         serializer = UserSerializer(data_of_users, data=request.data)
