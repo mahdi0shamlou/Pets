@@ -26,8 +26,18 @@ class UsersAnimlas(APIView):
 class AddAnimals(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
-    def get(self, request):
-        return Response('Animals AddAnimals')
+    def post(self, request):
+        type_animals = Animals.objects.get(name=request.data['type']).id
+        data_serilizers = {
+            "age":  request.data['age'],
+            "name": request.data['name'],
+            "user": request.user.id,
+            "type": type_animals,
+        }
+        add_animal_user_serializer = AnimalsUsersSerializer(data=data_serilizers)
+        add_animal_user_serializer.is_valid(raise_exception=True)
+        add_animal_user_serializer.save()
+        return Response(add_animal_user_serializer.data)
 
 class DeleteAnimals(APIView):
     authentication_classes = [JWTAuthentication]

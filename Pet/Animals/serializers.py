@@ -12,3 +12,7 @@ class AnimalsUsersSerializer(serializers.ModelSerializer):
     class Meta:
         model = AnimalsUsers
         fields = ['id', 'name', 'date_added', 'user', 'type', 'age']
+    def create(self, validated_data):
+        animal = AnimalsUsers(name=validated_data['name'], age=validated_data['age'], type=validated_data['type'], user=validated_data['user'])
+        animal.save()
+        return animal
