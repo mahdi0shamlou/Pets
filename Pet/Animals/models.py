@@ -22,5 +22,6 @@ class AnimalsUsers(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.user + '   ' + self.type
+        return str(self.user) + '  :  ' + str(self.type) + ' ------- > ' + self.name
+
 
