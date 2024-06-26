@@ -1,4 +1,5 @@
 from django.db import models
+from Users.models import UserData
 
 
 class Animals(models.Model):
@@ -9,4 +10,17 @@ class Animals(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name + ' ' + str(self.date_added)
+        return self.name
+
+
+class AnimalsUsers(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)  # name of pets not type of them
+    age = models.IntegerField()
+    type = models.ForeignKey(Animals, null=False, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserData, null=False, on_delete=models.CASCADE)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user + '   ' + self.type
+
