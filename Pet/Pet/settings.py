@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Users.apps.UsersConfig',
     'Animals.apps.AnimalsConfig',
+    'Vaccine.apps.VaccineConfig',
     'rest_framework',
     'rest_framework_simplejwt',
 ]
